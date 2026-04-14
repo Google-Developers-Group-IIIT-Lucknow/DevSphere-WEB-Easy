@@ -30,10 +30,38 @@ function processCartData(cartItems) {
   let totalPrice = 0;
 
   for (const item of cartItems) {
-    // -> Implement it here. 
-  }
+    let id = item["id"]
+    let name = item["name"].trim();
+    let quantity = item["quantity"]
+    let price = item["price"]
+    let q = 0;
+    let p = 0.0;
+    let newitem = {}
 
+     if(!isNaN(quantity) && !isNaN(price))
+     {
+        q = +parseInt(quantity)
+        p = +parseFloat(price)
+     }
+     else
+     {
+      continue
+     }
+     q = +parseInt(quantity)
+        p = +parseFloat(price)
+     if(!isNaN(id) && (id.length>0) && (isNaN(name)) && (name.length > 0) && (q > 0) && (p > 0.0))
+     {
+      newitem = {
+        "id": id,
+        "name": name,
+        "quantity": q,
+        "price": p
+      }
+      
+     totalPrice = (q*p) + totalPrice
+      cleanedCart.push(newitem)
+     }
+  }
   return { cleanedCart, totalPrice };
 }
-
 module.exports = { processCartData };

@@ -4,6 +4,13 @@
  * Processes a list of cart items, cleaning and validating them,
  * and then calculates the total price.
  *
+ 
+
+
+
+
+
+
  * Each cart item object is expected to have:
  * - id: string (unique identifier)
  * - name: string (product name)
@@ -25,15 +32,45 @@
  *   - `cleanedCart`: Array of valid and cleaned cart items.
  *   - `totalPrice`: Total price of all valid items.
  */
+
+
+
+
 function processCartData(cartItems) {
   const cleanedCart = [];
   let totalPrice = 0;
 
   for (const item of cartItems) {
-    // -> Implement it here. 
+    
+     if (typeof item.id !== "string" || item.id.trim() === ""){ 
+      continue;}
+
+     if (typeof item.name !== "string" || item.name.trim() === ""){
+       continue;}
+     
+      const quantity = Number(item.quantity);
+      if (!Number.isInteger(quantity) || quantity <= 0) {
+        continue;
+      }
+      const price = Number(item.price);
+      if (isNaN(price) || price <= 0){
+         continue;
+      }
+       const cleanedItem = {
+       id: item.id.trim(),
+       name: item.name.trim(),
+       quantity: quantity,
+       price: price,
+    };
+
+    cleanedCart.push(cleanedItem);
+      totalPrice += quantity * price;
+
   }
 
   return { cleanedCart, totalPrice };
 }
 
 module.exports = { processCartData };
+
+

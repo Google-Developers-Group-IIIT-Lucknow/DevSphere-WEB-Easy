@@ -30,7 +30,16 @@ function processCartData(cartItems) {
   let totalPrice = 0;
 
   for (const item of cartItems) {
-    // -> Implement it here. 
+ 
+    if (!item.id || item.id.trim().length === 0) continue;
+    if (!item.name || item.name.trim().length === 0) continue;
+    const quantity = parseInt(item.quantity, 10);
+    if (isNaN(quantity) || quantity <= 0) continue;
+    const price = parseFloat(item.price);
+    if (isNaN(price) || price <= 0) continue;
+
+    cleanedCart.push({ id: item.id, name: item.name, quantity, price });
+    totalPrice += quantity * price;
   }
 
   return { cleanedCart, totalPrice };

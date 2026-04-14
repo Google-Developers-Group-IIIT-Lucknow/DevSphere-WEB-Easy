@@ -25,12 +25,49 @@
  *   - `cleanedCart`: Array of valid and cleaned cart items.
  *   - `totalPrice`: Total price of all valid items.
  */
+
+
+
 function processCartData(cartItems) {
   const cleanedCart = [];
   let totalPrice = 0;
 
+  let Valid=true;
+
   for (const item of cartItems) {
-    // -> Implement it here. 
+    if ((item.id).trim()==null) {
+      alert("Invalid! ID cannot be Null");
+      Valid=false;
+    }
+    if ((item.name).trim()==null){
+      alert("Invalid! Item name cannot be null");
+      Valid=false;
+    }
+    if (isNaN(item.price) ==false){
+      alert("Invalid! Item price cannot be string");
+      Valid=false;
+    }else if(parseFloat(item.price)<0) {
+      alert("Invalid! Item price cannot be negative");
+      Valid=false;
+    }
+
+    if (isNaN(item.quantity) ==false){
+      alert("Invalid! Item quantity cannot be string");
+      Valid=false;
+    }else if(parseFloat(item.quantity)<=0) {
+      alert("Invalid! Item quantity cannot be negative or zero");
+      Valid=false;
+    }
+
+    if (Valid){
+      item.quantity+=null;
+      parseFloat(price);
+    }else{
+      const idx=cartItems.indexOf(item);
+      cartItems.splice(idx, 1);
+
+      totalPrice+=(quantity*price);
+    }
   }
 
   return { cleanedCart, totalPrice };

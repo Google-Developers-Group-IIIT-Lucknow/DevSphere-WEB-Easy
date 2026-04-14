@@ -31,7 +31,7 @@ function processCartData(cartItems) {
 
   for (const item of cartItems) {
     // -> Implement it here. 
-    totalPrice+=cartItems;
+    totalPrice+= item;
   }
 
   return { cleanedCart, totalPrice };

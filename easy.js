@@ -30,6 +30,20 @@ function processCartData(cartItems) {
   let totalPrice = 0;
 
   for (const item of cartItems) {
+    let q=parseInt(item.quantity);
+    let d=parseFloat(item.price);
+
+     if(item.id!="" && (item.name).trim()!="" && (q>0 && item.quantity!="") && (d>0 && item.price>=0))
+     {
+      cleanedCart.push({
+         id:item.id,
+    name: item.name,
+    quantity:q,
+    price:d
+  });
+      
+      totalPrice+=(q*d*1.0);
+     }
     // -> Implement it here. 
   }
 
